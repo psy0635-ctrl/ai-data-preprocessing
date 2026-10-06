@@ -51,14 +51,20 @@ for num in range(0, 10):
         img_path = TEST_ROOT / str(num) / numbers
 
         # 이미지 열기
-        img = Image.open(img_path)
+        # 흑백 이미지로 변환
+        img = Image.open(img_path).convert("L")
 
         # 이미지 → NumPy 배열
-        # 0~255 → 0~1 정규화
         imgarr = np.array(
             img,
             dtype=np.float32
-        ) / 255.0
+        )
+
+        # =====================================
+        # 정규화
+        # 0 ~ 255 → -1 ~ 1
+        # =====================================
+        imgarr = (imgarr / 127.5) - 1.0
 
         # 28 × 28 → 784 × 1
         x_test_datas.append(
@@ -68,7 +74,10 @@ for num in range(0, 10):
             )
         )
 
+        # =====================================
         # One-hot Vector
+        # =====================================
+
         y_tmp = np.zeros(
             shape=(10),
             dtype=np.float32
@@ -114,7 +123,7 @@ y_test_datas = np.reshape(
 
 
 # =========================================
-# 확인
+# 데이터 확인
 # =========================================
 
 print()
@@ -133,6 +142,17 @@ print(
 print(
     "y_test_datas 형태 :",
     y_test_datas.shape
+)
+
+# 정규화 확인
+print(
+    "테스트 데이터 최솟값 :",
+    x_test_datas.min()
+)
+
+print(
+    "테스트 데이터 최댓값 :",
+    x_test_datas.max()
 )
 
 print("====================================")

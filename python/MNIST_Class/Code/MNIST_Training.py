@@ -25,12 +25,11 @@ from MNIST_Testing import x_test_datas, y_test_datas
 IMAGE_ROOT = Path("/workspace/MNIST/images")
 TRAIN_ROOT = IMAGE_ROOT / "training"
 
-# 현재 파일:
-# /workspace/python/MNIST_Class/Code/MNIST_Training.py
 
+# 현재 파일 위치
 CODE_DIR = Path(__file__).resolve().parent
 
-# Code의 상위 폴더 = MNIST_Class
+# Code 폴더의 상위 폴더 = MNIST_Class
 PROJECT_DIR = CODE_DIR.parent
 
 # 결과 이미지 저장 폴더
@@ -44,7 +43,7 @@ RESULT_DIR.mkdir(
 
 
 # =========================================
-# Training 이미지 목록
+# Training 이미지 목록 가져오기
 # =========================================
 
 all_files = []
@@ -81,14 +80,20 @@ for num in range(0, 10):
         img_path = TRAIN_ROOT / str(num) / numbers
 
         # 이미지 읽기
-        img = Image.open(img_path)
+        # 흑백 이미지로 변환
+        img = Image.open(img_path).convert("L")
 
         # 이미지 → NumPy 배열
-        # 0~255 → 0~1
         imgarr = np.array(
             img,
             dtype=np.float32
         )
+
+        # =====================================
+        # 정규화
+        # 0 ~ 255 → -1 ~ 1
+        # =====================================
+        imgarr = (imgarr / 127.5) - 1.0
 
         # 28 × 28 → 784 × 1
         x_train_datas.append(
@@ -98,7 +103,10 @@ for num in range(0, 10):
             )
         )
 
+        # =====================================
         # One-hot Vector
+        # =====================================
+
         y_tmp = np.zeros(
             shape=(10),
             dtype=np.float32
@@ -129,7 +137,7 @@ y_train_datas = np.array(
 
 
 # =========================================
-# 모델 입력 형태
+# 모델 입력 형태로 변환
 # =========================================
 
 x_train_datas = np.reshape(
@@ -142,6 +150,10 @@ y_train_datas = np.reshape(
     (-1, 10)
 )
 
+
+# =========================================
+# 데이터 확인
+# =========================================
 
 print()
 print("========== 데이터 형태 ==========")
@@ -176,6 +188,31 @@ print(
     y_test_datas.shape
 )
 
+
+# =========================================
+# 정규화 결과 확인
+# =========================================
+
+print(
+    "학습 데이터 최솟값 :",
+    x_train_datas.min()
+)
+
+print(
+    "학습 데이터 최댓값 :",
+    x_train_datas.max()
+)
+
+print(
+    "테스트 데이터 최솟값 :",
+    x_test_datas.min()
+)
+
+print(
+    "테스트 데이터 최댓값 :",
+    x_test_datas.max()
+)
+
 print("==================================")
 
 
@@ -183,21 +220,27 @@ print("==================================")
 # 딥러닝 모델 생성
 # =========================================
 
-input = tf.keras.Input(
+model_input = tf.keras.Input(
     shape=(784,),
     name="Input"
 )
 
 
+# =========================================
 # 은닉층
+# =========================================
+
 hidden = layers.Dense(
     512,
     activation="relu",
     name="Hidden1"
-)(input)
+)(model_input)
 
 
+# =========================================
 # 출력층
+# =========================================
+
 output = layers.Dense(
     10,
     activation="softmax",
@@ -205,10 +248,13 @@ output = layers.Dense(
 )(hidden)
 
 
-# 모델
+# =========================================
+# 모델 생성
+# =========================================
+
 model = tf.keras.Model(
-    inputs=[input],
-    outputs=[output]
+    inputs=model_input,
+    outputs=output
 )
 
 
@@ -226,16 +272,16 @@ opt = keras.optimizers.Adam(
 # =========================================
 
 model.compile(
-
     loss="categorical_crossentropy",
-
     optimizer=opt,
-
     metrics=["accuracy"]
 )
 
 
-# 모델 구조
+# =========================================
+# 모델 구조 확인
+# =========================================
+
 model.summary()
 
 
@@ -244,9 +290,7 @@ model.summary()
 # =========================================
 
 history = model.fit(
-
     x_train_datas,
-
     y_train_datas,
 
     epochs=5,
@@ -265,9 +309,7 @@ history = model.fit(
 # =========================================
 
 test_loss, test_acc = model.evaluate(
-
     x_test_datas,
-
     y_test_datas
 )
 
@@ -316,7 +358,7 @@ plt.tight_layout()
 
 
 # =========================================
-# 결과 이미지 자동 저장
+# 결과 이미지 저장
 # =========================================
 
 graph_path = (
@@ -337,5 +379,8 @@ print(
 )
 
 
+# =========================================
 # 그래프 화면 출력
+# =========================================
+
 plt.show()

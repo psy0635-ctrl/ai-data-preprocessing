@@ -628,34 +628,104 @@ def plot_history(
 
 
 # ============================================================
-# 18. 다섯 모델 최종 비교
+# 18. L2 + Dropout 동시 적용 모델
+#
+# 입력 1000
+# → Dense 16 + L2 → Dropout
+# → Dense 16 + L2 → Dropout
+# → 출력 1
 # ============================================================
 
-plot_history([
+combined_model = keras.Sequential([
+    keras.Input(shape=(NUM_WORDS,)),
 
-    (
-        "baseline",
-        baseline_history
+    keras.layers.Dense(
+        16,
+        activation="relu",
+        kernel_regularizer=keras.regularizers.l2(0.001)
     ),
+    keras.layers.Dropout(0.5),
 
-    (
-        "smaller",
-        smaller_history
+    keras.layers.Dense(
+        16,
+        activation="relu",
+        kernel_regularizer=keras.regularizers.l2(0.001)
     ),
+    keras.layers.Dropout(0.5),
 
-    (
-        "bigger",
-        bigger_history
-    ),
+    keras.layers.Dense(
+        1,
+        activation="sigmoid"
+    )
+])
 
-    (
-        "l2",
-        l2_model_history
-    ),
+combined_model.compile(
+    optimizer="adam",
+    loss="binary_crossentropy",
+    metrics=["accuracy", "binary_crossentropy"]
+)
 
-    (
-        "dropout",
-        dpt_model_history
+print("\nL2 + Dropout 동시 적용 모델")
+combined_model.summary()
+
+combined_history = combined_model.fit(
+    train_data,
+    train_labels,
+    epochs=EPOCHS,
+    batch_size=BATCH_SIZE,
+    validation_data=(test_data, test_labels),
+    verbose=2
+)
+
+
+# ============================================================
+# 19. 여섯 모델 비교 및 그래프 저장
+# ============================================================
+
+histories = [
+    ("Baseline", baseline_history),
+    ("Smaller", smaller_history),
+    ("Bigger", bigger_history),
+    ("L2", l2_model_history),
+    ("Dropout", dpt_model_history),
+    ("L2 + Dropout", combined_history)
+]
+
+fig, ax = plt.subplots(figsize=(16, 10))
+
+for name, history in histories:
+    # 검증 결과: 점선
+    val_line, = ax.plot(
+        np.arange(1, len(history.epoch) + 1),
+        history.history["val_binary_crossentropy"],
+        linestyle="--",
+        label=f"{name} Val"
     )
 
-])
+    # 훈련 결과: 같은 색의 실선
+    ax.plot(
+        np.arange(1, len(history.epoch) + 1),
+        history.history["binary_crossentropy"],
+        color=val_line.get_color(),
+        label=f"{name} Train"
+    )
+
+ax.set_title("IMDB Model Comparison")
+ax.set_xlabel("Epochs")
+ax.set_ylabel("Binary Crossentropy")
+ax.set_xlim(1, EPOCHS)
+ax.legend(ncol=2)
+fig.tight_layout()
+
+# 파이썬 파일이 있는 폴더에 저장
+output_path = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)),
+    "Result_4_Combined.png"
+)
+
+# 창을 띄우기 전에 저장
+fig.savefig(output_path, dpi=200, bbox_inches="tight")
+
+print(f"\n그래프 저장 위치: {output_path}")
+
+plt.show()

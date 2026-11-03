@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "training_runs": 20,
+  "epochs_per_run": 100,
+  "primary_seed_rerun": "All four full histories match exactly",
+  "saved_models": "Loaded predictions match report metrics",
+  "inference_modes": "Noise and dropout inactive",
+  "batch_order": "Same for all four model conditions",
+  "existing_source_files_checked": 26,
+  "pdf_pages": 6,
+  "pdf_embedded_graphs": 6,
+  "pdf_text_and_bounds": "PASS",
+  "original_files_unchanged_sha256": {
+    "Flower.py": "0b193690f8f4144ee1177ad8c42ef81be58b5ee4b5d92daf6ec4883dd74c8e50",
+    "Flower2.py": "28c6c698ecc0f21cefd9989842c828576333b9da75f84995c2beaf55047a616d"
+  }
+}

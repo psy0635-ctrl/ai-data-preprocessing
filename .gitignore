@@ -24,3 +24,14 @@ venv/
 
 # Keep the final PDF; omit the duplicate editable report
 /python/Gas_assignment4/과제/*.hwp
+
+# Assignment 3: temporary files and local inspection records
+/python/Flower/tmp/
+/python/Flower/*.log
+/python/Flower/project_scan.json
+
+# Keep only the files needed to rebuild the final form
+/python/Flower/form_revision/*
+!/python/Flower/form_revision/build_form.py
+!/python/Flower/form_revision/template_native.hml
+!/python/Flower/form_revision/picture_seed.hml

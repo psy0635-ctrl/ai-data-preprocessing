@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "same_test_files_and_start_indices": true,
+  "same_initial_weights": true,
+  "same_epoch_budget": true,
+  "prediction_shapes": {
+    "3s": [
+      78150,
+      6
+    ],
+    "30s": [
+      78150,
+      6
+    ]
+  },
+  "report_generated_at": "2026-11-03 11:28 KST"
+}

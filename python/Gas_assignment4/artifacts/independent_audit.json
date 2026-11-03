@@ -1,0 +1,20 @@
+{
+  "3s": {
+    "passed": true,
+    "source_target_rows_checked": 78150,
+    "same_test_inputs": true,
+    "checkpoint_reloaded": true,
+    "checkpoint_max_scaled_difference_same_batch": 1.1102230246251565e-16,
+    "metrics_recomputed": true,
+    "layer_restriction_verified": true
+  },
+  "30s": {
+    "passed": true,
+    "source_target_rows_checked": 78150,
+    "same_test_inputs": true,
+    "checkpoint_reloaded": true,
+    "checkpoint_max_scaled_difference_same_batch": 1.1102230246251565e-16,
+    "metrics_recomputed": true,
+    "layer_restriction_verified": true
+  }
+}

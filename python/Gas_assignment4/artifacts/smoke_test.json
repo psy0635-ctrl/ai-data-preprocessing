@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "train_on_batch": [
+    0.16757582128047943,
+    0.389263778924942
+  ],
+  "output_device": "/job:localhost/replica:0/task:0/device:GPU:0",
+  "parameters": 33030,
+  "layers": [
+    "Conv1D",
+    "Conv1D",
+    "Conv1D",
+    "Dense",
+    "Dense"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "seed": 42,
+  "lookback": 100,
+  "sampling_seconds_assumed": 0.1,
+  "horizon_rows": [
+    30,
+    300
+  ],
+  "stride": 5,
+  "epochs": 20,
+  "batch_size": 512,
+  "optimizer": "Adam",
+  "learning_rate": 0.001,
+  "loss": "MSE over six scaled sensors",
+  "checkpoint_selection": "minimum validation MSE",
+  "shuffle_buffer": 32768,
+  "deterministic_ops": true,
+  "python": "3.12.14 (main, Aug 13 2026, 19:41:13) [GCC 14.2.0]",
+  "tensorflow": "2.21.0",
+  "numpy": "2.5.2",
+  "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.41",
+  "GPU": [
+    "PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')"
+  ],
+  "build_info": {
+    "cpu_compiler": "clang",
+    "cuda_compute_capabilities": [
+      "sm_60",
+      "sm_70",
+      "sm_80",
+      "sm_89",
+      "compute_90"
+    ],
+    "cuda_version": "12.5.1",
+    "cudnn_version": "9",
+    "is_cuda_build": true,
+    "is_rocm_build": false,
+    "is_tensorrt_build": false
+  }
+}

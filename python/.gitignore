@@ -1,11 +1,12 @@
+# Python 실행 환경과 개인 설정
 __pycache__/
-*.pyc
-
+*.py[cod]
 .venv/
 venv/
-
 .vscode/
-
 .env
+.env.*
+!.env.example
 
+# Python 실습의 원본 데이터 폴더
 data/

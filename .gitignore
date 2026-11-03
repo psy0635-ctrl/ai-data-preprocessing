@@ -1,0 +1,26 @@
+# Local Python environments and settings
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.vscode/
+.env
+.env.*
+!.env.example
+
+# Original datasets at the repository root
+/DataSet_00000_00999/
+/DataSet_00000_00999.zip
+/MNIST/
+
+# Reproducible assignment 4 caches and per-sample predictions
+/python/Gas_assignment4/artifacts/*.npy
+/python/Gas_assignment4/artifacts/predictions_*.npz
+
+# Package metadata, QA intermediates and duplicate archives
+/python/Gas_assignment4/artifacts/delivery_checksums.json
+/python/Gas_assignment4/submission/
+/python/Gas_assignment4/*.zip
+
+# Keep the final PDF; omit the duplicate editable report
+/python/Gas_assignment4/과제/*.hwp

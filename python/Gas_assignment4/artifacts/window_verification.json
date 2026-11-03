@@ -1,0 +1,51 @@
+{
+  "passed": true,
+  "synthetic_common_samples": 20,
+  "lookback": 100,
+  "stride": 5,
+  "per_file_samples": 521,
+  "first_last_examples": [
+    {
+      "horizon_rows": 30,
+      "first_X_rows": [
+        0,
+        99
+      ],
+      "first_y_row": 129,
+      "last_X_rows": [
+        2600,
+        2699
+      ],
+      "last_y_row": 2729
+    },
+    {
+      "horizon_rows": 300,
+      "first_X_rows": [
+        0,
+        99
+      ],
+      "first_y_row": 399,
+      "last_X_rows": [
+        2600,
+        2699
+      ],
+      "last_y_row": 2999
+    }
+  ],
+  "split_samples": {
+    "train": 364700,
+    "validation": 78150,
+    "test": 78150
+  },
+  "X_batch_shape": [
+    "batch",
+    100,
+    6
+  ],
+  "y_batch_shape": [
+    "batch",
+    1,
+    6
+  ],
+  "note": "The singleton time axis permits CNN/Dense layers only."
+}

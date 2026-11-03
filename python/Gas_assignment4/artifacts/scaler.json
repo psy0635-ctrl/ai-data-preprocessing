@@ -1,0 +1,28 @@
+{
+  "sensors": [
+    "Temp1",
+    "Press1",
+    "Temp2",
+    "Press2",
+    "Acc",
+    "Gas"
+  ],
+  "min": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "max": [
+    110.0,
+    3.25,
+    110.0,
+    3.25,
+    0.1,
+    1007.0
+  ],
+  "fit_split": "train",
+  "policy": "clip scaled inputs and training/validation labels to [0,1]; evaluate against original unclipped test truth"
+}

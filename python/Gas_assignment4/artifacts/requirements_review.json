@@ -1,0 +1,74 @@
+{
+  "verified": true,
+  "original_CSVs_and_hashes_checked": 1000,
+  "raw_and_scaled_cache_match_originals": true,
+  "training_only_scaler_refit_matches": true,
+  "zero_counts": [
+    53537,
+    32977,
+    56316,
+    36340,
+    40176,
+    51518
+  ],
+  "split_disjoint": true,
+  "out_of_range": {
+    "train": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "validation": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "test": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "models": {
+    "3s": {
+      "all_sensor_metrics_verified": true,
+      "test_samples": 78150,
+      "saved_layers": [
+        "InputLayer",
+        "Conv1D",
+        "Conv1D",
+        "Conv1D",
+        "Dense",
+        "Dense"
+      ]
+    },
+    "30s": {
+      "all_sensor_metrics_verified": true,
+      "test_samples": 78150,
+      "saved_layers": [
+        "InputLayer",
+        "Conv1D",
+        "Conv1D",
+        "Conv1D",
+        "Dense",
+        "Dense"
+      ]
+    }
+  },
+  "submission_zip_and_current_files_match": true,
+  "requirement_interpretation": "User clarified Util -> Preprocessing -> Prepatch describes the process, not a mandatory tool.",
+  "sampling_interval_evidence": "_Merged_Data_data_set_00000.png x-axis: Timestamp(100 ms), visually checked",
+  "limitations": [
+    "No separate physical timestamp column in CSV",
+    "Statistical independence of different experiment files is not established"
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "requirement": "One model inference must return all six sensors together.",
+  "sensor_order": [
+    "Temp1",
+    "Press1",
+    "Temp2",
+    "Press2",
+    "Acc",
+    "Gas"
+  ],
+  "models": {
+    "3s": {
+      "passed": true,
+      "input_shape": [
+        1,
+        100,
+        6
+      ],
+      "single_call_output_shape": [
+        1,
+        1,
+        6
+      ],
+      "output_units": 6,
+      "training_loss": "mse",
+      "test_prediction_shape": [
+        78150,
+        6
+      ],
+      "test_file": "_Merged_Data_data_set_00001.csv",
+      "input_rows": [
+        0,
+        99
+      ],
+      "target_row": 129,
+      "single_call_original_unit_predictions": {
+        "Temp1": 2.4807442165911198,
+        "Press1": 0.06152548221871257,
+        "Temp2": 9.767006486654282,
+        "Press2": 0.19053947553038597,
+        "Acc": 0.005595558509230614,
+        "Gas": 53.8005684427917
+      },
+      "original_unit_truth": {
+        "Temp1": 10.653453826904297,
+        "Press1": 0.003057644935324788,
+        "Temp2": 4.784634113311768,
+        "Press2": 0.1730036735534668,
+        "Acc": 3.6403998819878325e-05,
+        "Gas": 38.18116760253906
+      },
+      "saved_batch_predictions_match": true
+    },
+    "30s": {
+      "passed": true,
+      "input_shape": [
+        1,
+        100,
+        6
+      ],
+      "single_call_output_shape": [
+        1,
+        1,
+        6
+      ],
+      "output_units": 6,
+      "training_loss": "mse",
+      "test_prediction_shape": [
+        78150,
+        6
+      ],
+      "test_file": "_Merged_Data_data_set_00001.csv",
+      "input_rows": [
+        0,
+        99
+      ],
+      "target_row": 399,
+      "single_call_original_unit_predictions": {
+        "Temp1": 5.626290775835514,
+        "Press1": 0.09946009190753102,
+        "Temp2": 18.203074038028717,
+        "Press2": 0.48395997285842896,
+        "Acc": 0.013413561880588532,
+        "Gas": 116.72917395085096
+      },
+      "original_unit_truth": {
+        "Temp1": 26.50438690185547,
+        "Press1": 0.2326177954673767,
+        "Temp2": 22.94123077392578,
+        "Press2": 0.4410533607006073,
+        "Acc": 0.01988944038748741,
+        "Gas": 163.09747314453125
+      },
+      "saved_batch_predictions_match": true
+    }
+  },
+  "passed": true
+}

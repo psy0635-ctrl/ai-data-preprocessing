@@ -1,0 +1,71 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1793668873.084277   28781 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1793668875.068098   28781 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WINDOW VERIFICATION PASS {"passed": true, "synthetic_common_samples": 20, "lookback": 100, "stride": 5, "per_file_samples": 521, "first_last_examples": [{"horizon_rows": 30, "first_X_rows": [0, 99], "first_y_row": 129, "last_X_rows": [2600, 2699], "last_y_row": 2729}, {"horizon_rows": 300, "first_X_rows": [0, 99], "first_y_row": 399, "last_X_rows": [2600, 2699], "last_y_row": 2999}], "split_samples": {"train": 364700, "validation": 78150, "test": 78150}, "X_batch_shape": ["batch", 100, 6], "y_batch_shape": ["batch", 1, 6], "note": "The singleton time axis permits CNN/Dense layers only."}
+Model: "cnn_dense_forecaster"
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
+┃ Layer (type)                    ┃ Output Shape           ┃       Param # ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
+│ conv_1 (Conv1D)                 │ (None, 50, 32)         │           992 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ conv_2 (Conv1D)                 │ (None, 25, 32)         │         5,152 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ conv_full_window (Conv1D)       │ (None, 1, 32)          │        25,632 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_hidden (Dense)            │ (None, 1, 32)          │         1,056 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ six_sensors (Dense)             │ (None, 1, 6)           │           198 │
+└─────────────────────────────────┴────────────────────────┴───────────────┘
+ Total params: 33,030 (129.02 KB)
+ Trainable params: 33,030 (129.02 KB)
+ Non-trainable params: 0 (0.00 B)
+
+MODEL/GPU SMOKE PASS /job:localhost/replica:0/task:0/device:GPU:0
+TRAIN START horizon=3s, identical_initial_weights=3a34ae73deddc4fd0bb8126f2ac7e1a2631c122d6320a39a77f8a879a95bf712
+/usr/local/lib/python3.12/site-packages/keras/src/trainers/epoch_iterator.py:74: UserWarning: `shuffle=True` was passed, but will be ignored since the data `x` was provided as a tf.data.Dataset. The Dataset is expected to already be shuffled (via `.shuffle(buffer_size)`).
+  self.data_adapter = data_adapters.get_data_adapter(
+EPOCH {"horizon_seconds": 3, "epoch": 1, "seconds": 17.101, "loss": 0.004860923625528812, "mae": 0.04213439300656319, "val_loss": 0.0012115457793697715, "val_mae": 0.027016913518309593}
+EPOCH {"horizon_seconds": 3, "epoch": 2, "seconds": 15.331, "loss": 0.00114367192145437, "mae": 0.026239724829792976, "val_loss": 0.0011966769816353917, "val_mae": 0.02695474587380886}
+EPOCH {"horizon_seconds": 3, "epoch": 3, "seconds": 15.447, "loss": 0.0010802538599818945, "mae": 0.025374537333846092, "val_loss": 0.001682584173977375, "val_mae": 0.0328122153878212}
+EPOCH {"horizon_seconds": 3, "epoch": 4, "seconds": 15.185, "loss": 0.0010131732560694218, "mae": 0.02455611526966095, "val_loss": 0.0010367759969085455, "val_mae": 0.025094712153077126}
+EPOCH {"horizon_seconds": 3, "epoch": 5, "seconds": 15.969, "loss": 0.0009893090464174747, "mae": 0.02425956353545189, "val_loss": 0.0009386654710397124, "val_mae": 0.02353574149310589}
+EPOCH {"horizon_seconds": 3, "epoch": 6, "seconds": 15.112, "loss": 0.0009505703346803784, "mae": 0.023771166801452637, "val_loss": 0.0010393138509243727, "val_mae": 0.024229751899838448}
+EPOCH {"horizon_seconds": 3, "epoch": 7, "seconds": 15.592, "loss": 0.000910207920242101, "mae": 0.02321740612387657, "val_loss": 0.0008557619876228273, "val_mae": 0.022173071280121803}
+EPOCH {"horizon_seconds": 3, "epoch": 8, "seconds": 15.979, "loss": 0.0008787706028670073, "mae": 0.022752176970243454, "val_loss": 0.0008766426471993327, "val_mae": 0.022373877465724945}
+EPOCH {"horizon_seconds": 3, "epoch": 9, "seconds": 18.522, "loss": 0.0008555392851121724, "mae": 0.022420816123485565, "val_loss": 0.0010438095778226852, "val_mae": 0.025116819888353348}
+EPOCH {"horizon_seconds": 3, "epoch": 10, "seconds": 16.346, "loss": 0.0008443439146503806, "mae": 0.02225162647664547, "val_loss": 0.0008294657454825938, "val_mae": 0.02155010774731636}
+EPOCH {"horizon_seconds": 3, "epoch": 11, "seconds": 16.637, "loss": 0.0008160434663295746, "mae": 0.021871138364076614, "val_loss": 0.0008026236318983138, "val_mae": 0.02126154862344265}
+EPOCH {"horizon_seconds": 3, "epoch": 12, "seconds": 15.693, "loss": 0.0007687988108955324, "mae": 0.021196404471993446, "val_loss": 0.000763010059017688, "val_mae": 0.021347764879465103}
+EPOCH {"horizon_seconds": 3, "epoch": 13, "seconds": 21.549, "loss": 0.0007328478968702257, "mae": 0.02064158394932747, "val_loss": 0.0007212816854007542, "val_mae": 0.020336374640464783}
+EPOCH {"horizon_seconds": 3, "epoch": 14, "seconds": 16.114, "loss": 0.0007085769320838153, "mae": 0.020251821726560593, "val_loss": 0.0007124478579498827, "val_mae": 0.02021268755197525}
+EPOCH {"horizon_seconds": 3, "epoch": 15, "seconds": 17.02, "loss": 0.0006919245352037251, "mae": 0.019983192905783653, "val_loss": 0.0007109585567377508, "val_mae": 0.02027435600757599}
+EPOCH {"horizon_seconds": 3, "epoch": 16, "seconds": 16.959, "loss": 0.0006840114365331829, "mae": 0.019840309396386147, "val_loss": 0.0006710325251333416, "val_mae": 0.019411146640777588}
+EPOCH {"horizon_seconds": 3, "epoch": 17, "seconds": 16.673, "loss": 0.0006726108258590102, "mae": 0.019656378775835037, "val_loss": 0.0006909719086252153, "val_mae": 0.019687393680214882}
+EPOCH {"horizon_seconds": 3, "epoch": 18, "seconds": 15.697, "loss": 0.0006651218864135444, "mae": 0.019531527534127235, "val_loss": 0.0007509033312089741, "val_mae": 0.02076895162463188}
+EPOCH {"horizon_seconds": 3, "epoch": 19, "seconds": 16.594, "loss": 0.0006599916378036141, "mae": 0.019456155598163605, "val_loss": 0.0007404476637020707, "val_mae": 0.020418323576450348}
+EPOCH {"horizon_seconds": 3, "epoch": 20, "seconds": 16.942, "loss": 0.0006520034512504935, "mae": 0.019314194098114967, "val_loss": 0.0006702294340357184, "val_mae": 0.019193915650248528}
+TEST RESULT {"samples": 78150, "cnn": {"normalized_MAE": 0.01918370154138991, "normalized_RMSE": 0.02572418163930249, "per_sensor_original_units": {"Temp1": {"MAE": 2.064338963351993, "RMSE": 2.789867113289358, "R2": 0.9932482483596397}, "Press1": {"MAE": 0.06720913988485491, "RMSE": 0.08811812683656418, "R2": 0.992277732278992}, "Temp2": {"MAE": 2.044001196360196, "RMSE": 2.7912392073149173, "R2": 0.9930306467017511}, "Press2": {"MAE": 0.05887979402797726, "RMSE": 0.07856850221317245, "R2": 0.9934354350037006}, "Acc": {"MAE": 0.002000155387845598, "RMSE": 0.0027232856610452717, "R2": 0.9915820890505914}, "Gas": {"MAE": 19.088202007199968, "RMSE": 25.116079838482737, "R2": 0.9931016160802942}}}, "persistence": {"normalized_MAE": 0.019207089213264625, "normalized_RMSE": 0.026914263461519906, "per_sensor_original_units": {"Temp1": {"MAE": 2.139980407196795, "RMSE": 2.9771231260290607, "R2": 0.9923114752586522}, "Press1": {"MAE": 0.06212202386170336, "RMSE": 0.0881445077229374, "R2": 0.9922731077875412}, "Temp2": {"MAE": 2.1899836033114974, "RMSE": 3.039991636677848, "R2": 0.9917330912330427}, "Press2": {"MAE": 0.06100524713834054, "RMSE": 0.08611787512548628, "R2": 0.9921132946542004}, "Acc": {"MAE": 0.0019008529464800373, "RMSE": 0.0026563232647578722, "R2": 0.9919909725837149}, "Gas": {"MAE": 19.118280151810133, "RMSE": 26.769751646799268, "R2": 0.992163315998097}}}, "horizon_seconds": 3, "training_seconds": 330.67303778103087, "parameters": 33030, "initial_weights_sha256": "3a34ae73deddc4fd0bb8126f2ac7e1a2631c122d6320a39a77f8a879a95bf712", "epochs_run": 20, "best_epoch": 20, "best_validation_MSE": 0.0006702294340357184}
+TRAIN START horizon=30s, identical_initial_weights=3a34ae73deddc4fd0bb8126f2ac7e1a2631c122d6320a39a77f8a879a95bf712
+EPOCH {"horizon_seconds": 30, "epoch": 1, "seconds": 20.828, "loss": 0.007879992015659809, "mae": 0.06013308838009834, "val_loss": 0.0038121305406093597, "val_mae": 0.046674732118844986}
+EPOCH {"horizon_seconds": 30, "epoch": 2, "seconds": 17.198, "loss": 0.0031447659712284803, "mae": 0.04199504852294922, "val_loss": 0.0034718152601271868, "val_mae": 0.0425017885863781}
+EPOCH {"horizon_seconds": 30, "epoch": 3, "seconds": 16.828, "loss": 0.002858212683349848, "mae": 0.03972432762384415, "val_loss": 0.0030319972429424524, "val_mae": 0.04082193598151207}
+EPOCH {"horizon_seconds": 30, "epoch": 4, "seconds": 17.658, "loss": 0.0026814641896635294, "mae": 0.038370463997125626, "val_loss": 0.0028559386264532804, "val_mae": 0.03887874260544777}
+EPOCH {"horizon_seconds": 30, "epoch": 5, "seconds": 15.362, "loss": 0.002589097013697028, "mae": 0.037646450102329254, "val_loss": 0.002957666292786598, "val_mae": 0.03964748606085777}
+EPOCH {"horizon_seconds": 30, "epoch": 6, "seconds": 15.837, "loss": 0.0025031776167452335, "mae": 0.03698479011654854, "val_loss": 0.0028827060014009476, "val_mae": 0.03946052864193916}
+EPOCH {"horizon_seconds": 30, "epoch": 7, "seconds": 16.479, "loss": 0.002468688413500786, "mae": 0.03671408072113991, "val_loss": 0.0029381609056144953, "val_mae": 0.039112482219934464}
+EPOCH {"horizon_seconds": 30, "epoch": 8, "seconds": 15.641, "loss": 0.0024318310897797346, "mae": 0.036423493176698685, "val_loss": 0.0028121594805270433, "val_mae": 0.038085006177425385}
+EPOCH {"horizon_seconds": 30, "epoch": 9, "seconds": 16.244, "loss": 0.0023881695233285427, "mae": 0.03606318309903145, "val_loss": 0.002751256339251995, "val_mae": 0.03796232491731644}
+EPOCH {"horizon_seconds": 30, "epoch": 10, "seconds": 16.736, "loss": 0.002363004023209214, "mae": 0.03586176782846451, "val_loss": 0.0027290410362184048, "val_mae": 0.03774038329720497}
+EPOCH {"horizon_seconds": 30, "epoch": 11, "seconds": 16.408, "loss": 0.0023539254907518625, "mae": 0.03578853979706764, "val_loss": 0.002743098419159651, "val_mae": 0.03782550245523453}
+EPOCH {"horizon_seconds": 30, "epoch": 12, "seconds": 16.543, "loss": 0.0023201280273497105, "mae": 0.03551415354013443, "val_loss": 0.002628099638968706, "val_mae": 0.03695211932063103}
+EPOCH {"horizon_seconds": 30, "epoch": 13, "seconds": 15.225, "loss": 0.0023278004955500364, "mae": 0.03555837646126747, "val_loss": 0.002732916036620736, "val_mae": 0.03752126917243004}
+EPOCH {"horizon_seconds": 30, "epoch": 14, "seconds": 17.83, "loss": 0.00227498565800488, "mae": 0.035151850432157516, "val_loss": 0.0028655894566327333, "val_mae": 0.038369350135326385}
+EPOCH {"horizon_seconds": 30, "epoch": 15, "seconds": 15.91, "loss": 0.0022702356800436974, "mae": 0.03510896861553192, "val_loss": 0.00266656163148582, "val_mae": 0.037315744906663895}
+EPOCH {"horizon_seconds": 30, "epoch": 16, "seconds": 17.073, "loss": 0.0022716885432600975, "mae": 0.035104844719171524, "val_loss": 0.0026517908554524183, "val_mae": 0.037146855145692825}
+EPOCH {"horizon_seconds": 30, "epoch": 17, "seconds": 14.989, "loss": 0.002252143109217286, "mae": 0.0349397212266922, "val_loss": 0.0027008093893527985, "val_mae": 0.03729548305273056}
+EPOCH {"horizon_seconds": 30, "epoch": 18, "seconds": 16.677, "loss": 0.002219760324805975, "mae": 0.03468692675232887, "val_loss": 0.002617385471239686, "val_mae": 0.03699668124318123}
+EPOCH {"horizon_seconds": 30, "epoch": 19, "seconds": 16.059, "loss": 0.002204064279794693, "mae": 0.034530434757471085, "val_loss": 0.002832749392837286, "val_mae": 0.03825504705309868}
+EPOCH {"horizon_seconds": 30, "epoch": 20, "seconds": 17.062, "loss": 0.0021952311508357525, "mae": 0.03441588208079338, "val_loss": 0.002624811138957739, "val_mae": 0.036656931042671204}
+TEST RESULT {"samples": 78150, "cnn": {"normalized_MAE": 0.03648569819100794, "normalized_RMSE": 0.04947315017276019, "per_sensor_original_units": {"Temp1": {"MAE": 3.8923948794707446, "RMSE": 5.325987601429862, "R2": 0.9767343748499485}, "Press1": {"MAE": 0.1175879444398768, "RMSE": 0.16164947471757565, "R2": 0.9755983227517655}, "Temp2": {"MAE": 4.203683901342516, "RMSE": 5.665287495048075, "R2": 0.9728085438517275}, "Press2": {"MAE": 0.11835476861730398, "RMSE": 0.1585450328901905, "R2": 0.9743006936455298}, "Acc": {"MAE": 0.0035855763060720245, "RMSE": 0.004904794623760463, "R2": 0.974193979530027}, "Gas": {"MAE": 37.117971696594594, "RMSE": 49.633331368666454, "R2": 0.9741994675790344}}}, "persistence": {"normalized_MAE": 0.09198183856724101, "normalized_RMSE": 0.11473410541779511, "per_sensor_original_units": {"Temp1": {"MAE": 10.067933415638752, "RMSE": 12.787679624599647, "R2": 0.865878649216953}, "Press1": {"MAE": 0.299110112660016, "RMSE": 0.38193177275912776, "R2": 0.8637794402563609}, "Temp2": {"MAE": 10.066203744368364, "RMSE": 12.633876588002208, "R2": 0.8647734966552117}, "Press2": {"MAE": 0.3025745341552273, "RMSE": 0.3719557183281327, "R2": 0.8585514172832229}, "Acc": {"MAE": 0.009303587766050355, "RMSE": 0.011352988741730016, "R2": 0.861738966904406}, "Gas": {"MAE": 91.31859235582067, "RMSE": 112.49602145969442, "R2": 0.8674571992567334}}}, "horizon_seconds": 30, "training_seconds": 333.01001823099796, "parameters": 33030, "initial_weights_sha256": "3a34ae73deddc4fd0bb8126f2ac7e1a2631c122d6320a39a77f8a879a95bf712", "epochs_run": 20, "best_epoch": 18, "best_validation_MSE": 0.002617385471239686}
+COMPLETE: two matched models trained and test-evaluated.
